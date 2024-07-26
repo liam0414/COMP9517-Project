@@ -2,6 +2,8 @@
 **/.ipynb_checkpoints
 **/dataset
 **/bin
-runs
+**/runs
+**/predictions
+**/models
 WildScenes2d
 coco8-seg/
