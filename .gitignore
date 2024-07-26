@@ -3,5 +3,7 @@
 **/dataset
 **/bin
 **/runs
+**/predictions
+**/models
 WildScenes2d
 coco8-seg/
