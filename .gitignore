@@ -4,6 +4,6 @@
 **/bin
 **/runs
 **/predictions
-**/models
+**/trained
 WildScenes2d
 coco8-seg/
