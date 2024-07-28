@@ -8,7 +8,6 @@ from torch.utils.data import DataLoader, Dataset
 NUM_CLASSES = 19
 ORG_HEIGHT  = 1512
 ORG_WIDTH   = 2016
-# id_labels = {i: e for i, e in enumerate(METAINFO['classes'])}
 
 METAINFO = {
     "classes": (
@@ -55,6 +54,7 @@ METAINFO = {
     ],
     "cidx": list(range(NUM_CLASSES))
 }
+id_labels = {i: e for i, e in enumerate(METAINFO['classes'])}
 
 
 PATH = 'dataset/'
@@ -65,7 +65,7 @@ def get_dfs(path=PATH):
     return (train_df, val_df, test_df)
 
 
-def label_to_rgb(label, palette):
+def label_to_rgb(label, palette=METAINFO['palette']):
     rgb_image = np.zeros((*label.shape, 3), dtype=np.uint8)
     for label_idx, color in enumerate(palette):
         rgb_image[label == label_idx] = color
