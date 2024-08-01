@@ -59,9 +59,15 @@ id_labels = {i: e for i, e in enumerate(METAINFO['classes'])}
 
 PATH = 'dataset/'
 def get_dfs(path=PATH):
-    train_df = pd.read_csv(PATH + 'train.csv')
-    val_df   = pd.read_csv(PATH + 'val.csv'  )
-    test_df  = pd.read_csv(PATH + 'test.csv' )
+    train_df = pd.read_csv(path + 'train.csv')
+    val_df   = pd.read_csv(path + 'val.csv'  )
+    test_df  = pd.read_csv(path + 'test.csv' )
+    return (train_df, val_df, test_df)
+
+def get_sampled_30_dfs(path=PATH):
+    train_df = pd.read_csv(path + 'train_sample_30.csv')
+    val_df   = pd.read_csv(path + 'val_sample_30.csv'  )
+    test_df  = pd.read_csv(path + 'test.csv' )
     return (train_df, val_df, test_df)
 
 
