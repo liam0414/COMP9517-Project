@@ -1,5 +1,7 @@
 import numpy as np
 import cv2
+import gc
+import matplotlib.pyplot as plt 
 from skimage import morphology, measure
 from .. import NUM_CLASSES, label_to_rgb, ORG_HEIGHT, ORG_WIDTH
 
@@ -112,7 +114,7 @@ def run_create_yolo_folder_structure(path):
 # -----------------------------------------------------------------
 
 def plot_yolo_predictions(
-    model, test_df, indices, title, font_factor=1, save=True
+    model, test_df, indices, title, font_factor=1, save=True, border_fill=False
 ):
     df = test_df.iloc[indices]
     test_inputs, ground_truths = get_img_and_labels(df)
@@ -130,7 +132,7 @@ def plot_yolo_predictions(
     fig.suptitle(title, fontsize=45*font_factor)
     subtitles = ["Original Image", "Ground Truth", "Prediction"]
     images = np.array(df['im_path']).astype(str)
-    predictions = model.predict(test_inputs, ret=True)
+    predictions = model.predict(test_inputs, ret=True, border_fill=border_fill)
     imread_rgb = lambda img: cv2.cvtColor(cv2.imread(img, cv2.IMREAD_UNCHANGED), cv2.COLOR_BGR2RGB)
 
     # for each prediction

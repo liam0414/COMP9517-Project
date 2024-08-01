@@ -8,7 +8,7 @@ from tqdm import tqdm
 import torch.nn.functional as F
 from torchvision import transforms
 
-from ..helpers import NUM_CLASSES, METAINFO
+from ..helpers import NUM_CLASSES, METAINFO, label_to_rgb
 
 # Parameters
 IMG_SIZE = 512
@@ -143,3 +143,48 @@ def print_unetpp_ious(model, test_loader):
     # Calculate Mean IoU
     mean_iou = total_iou / 15
     print(f"\nMean IoU: {mean_iou:.4f}")
+
+
+def plot_unet_prediction(model, test_loader):
+    def visualize_prediction(image, label, prediction, palette):
+        image = image.cpu().numpy().transpose((1, 2, 0))
+        label = label.cpu().numpy()
+        prediction = prediction.cpu().numpy()
+
+        plt.figure(figsize=(15, 15))
+        plt.subplot(131)
+        plt.imshow(image)
+        plt.title("Image")
+        plt.axis('off')
+
+        plt.subplot(132)
+        plt.imshow(label_to_rgb(label, palette))
+        plt.title("Ground Truth")
+        plt.axis('off')
+
+        plt.subplot(133)
+        plt.imshow(label_to_rgb(prediction, palette))
+        plt.title("Prediction")
+        plt.axis('off')
+        plt.show()
+    
+    with torch.no_grad():
+        for data in test_loader:
+            if data is None:
+                continue
+
+            images, labels = data
+            images = images.cuda()
+
+            outputs = model(images)
+            if isinstance(outputs, list):
+                outputs = outputs[-1]
+
+            outputs = outputs.argmax(1).cpu()
+
+            for i in range(len(images)):
+                image = images[i]
+                label = labels[i]
+                prediction = outputs[i]
+                visualize_prediction(image, label, prediction, METAINFO['palette'])
+            break

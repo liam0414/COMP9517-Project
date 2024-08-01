@@ -14,7 +14,7 @@ from .helpers import SHAPE, CV2_SHAPE, ORG_SHAPE, CV2_ORG_SHAPE, \
     get_corresponding_prediction, read_img, read_batch, replace_border_black_regions
 
 PREDICT_PATH = 'predictions/'
-MODEL_PATH = 'trained/weights/best.pt'
+MODEL_PATH = 'weights/best.pt'
 
 
 class EnsembleYOLO:
