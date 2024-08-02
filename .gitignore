@@ -1,9 +1,11 @@
 **/__pycache__
 **/.ipynb_checkpoints
-**/dataset
+# **/dataset
 **/bin
 **/runs
 **/predictions
+**/predictions*
+# **/train*
 **/trained
 WildScenes2d
 coco8-seg/
