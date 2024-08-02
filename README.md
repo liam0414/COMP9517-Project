@@ -5,25 +5,62 @@ This paper explores natural scene semantic segmentation using the WildScenes dat
 ![image](https://github.com/user-attachments/assets/43572984-2aec-409d-8c36-d557afb1de49)
 
 
-## Folder Structure
+# Folder Structure
 Our code submission is organized as follows:
 
-- **Root Folder:**
+- **Top level files:**
   - `README.md`: This file.
   - `eda.ipynb`: Contains all the code for performing exploratory data analysis.
   - `model_run.ipynb`: Contains the code for running our final models. Running this notebook from start to finish, after setting up your environment according to the requirements listed below, will reproduce the demonstrated results.
+  * NOTE: Top level notebooks are all that is needed to demonstrate the results.
 
 - **Subfolders:**
   - `models`: Contains the code for our final models and final post-processing code.
-  - `notebooks`: Contains all our progress throughout the project, including models we decided not to include as our final models such as SegNet and U-Net. It also contains code for our post-processing techniques such as superpixels, morphology, and CRF.
-  - `dataset`: Contains our custom test and validation samples (splitting mechanism outline in the accompanying report), and 30% stratified samples.
+  - `notebooks`: Contains all our progress throughout the project, including certain highlighted models we decided not to include as our final models such as SegNet and U-Net. It also contains code for our post-processing techniques such as superpixels, morphology, and CRF. These notebooks are also all runnable.
+  - `dataset`: Contains `.csv` for the original, and custom test and validation samples (splitting mechanism outline in the accompanying report), and 30% stratified samples.
+
+**NOTE**: The `WildScenes2d` dataset folderr should be at top level. The following should provide comprehensive guide to the folder structure:
+```python
+COMP9517-main/
+│
+├── dataset/
+│   ├── test.csv             # original test
+│   ├── train.csv            # original train
+│   ├── val.csv              # original val
+│   ├── train_sample_30.csv  # 30% train
+│   ├── val_sample_30.csv    # 30% val
+│   └── train_sample.csv     # 50% train
+│
+├── models/
+│   ├── unetpp/ # model type
+│   │   ├──     # backbone .py files for model
+│   │  ...
+│   │
+│  ...
+│
+├── notebooks/
+│   ├── unetpp/ # model type
+│   │   ├──     # notebooks for detailing train and evaluation
+│   │  ...
+│   │
+│  ...
+│
+├── WildScenes2d/ # wildscenes dataset
+│   ├── K-01
+│   ├── K-03
+│   ├── V-01
+│   ├── V-02
+│   └── V-03
+│
+├── eda.ipynb       # final EDA results
+└── model_run.ipynb # final prediction results
+```
     
-## Package Requirements
+# Package Requirements
 
 To set up the environment, run the following commands:
 
 ```bash
-pip install 
 pip install numpy
 pip install matplotlib
 pip install scikit-learn
@@ -44,8 +81,8 @@ to verify if you have cuda
 nvcc --version
 ```
 
-### Installing CRF
-The package to run CRF algorithm requires the following module set-up in one of two ways.
+## Installing CRF
+The package to run CRF algorithm requires the following module set-up in one of two ways. (Please note that CRF is not used in our final results, so this could be optional.)
 1. (via pip): 
 ```bash
 pip install pydensecrf
@@ -60,16 +97,17 @@ This repository is a Cython-based Python wrapper for Philipp Krähenbühl's Full
 pip install cython
 ```
 
-### Running the Code
+## Running the Code
 - Set Up Environment:
-  - Ensure you have Python 3.8.19 installed.
+  - Ensure you have Python 3.11+ installed.
   - Install all the required packages listed above.
 - Exploratory Data Analysis:
-  - Open and run eda.ipynb to perform exploratory data analysis.
-- Model Training and Evaluation:
-  - Open and run model_run.ipynb to train and evaluate our final models. This notebook will guide you through the steps to reproduce the results demonstrated in our report.
+  - Open and run `eda.ipynb` to perform exploratory data analysis.
+- Model Evaluation:
+  - Open and run `model_run.ipynb` to evaluate our final models. This notebook will guide you through the steps to reproduce the results demonstrated in our report.
+  - To run model training and other training evaluations, go to `notebooks/` folder, and run any notebook in its subfolders.
 
-### Contact Information
+## Contact Information
 For any questions or issues, please contact the team members:
 * Liam Chen: z3278107@ad.unsw.edu.au
 * The Duy Nguyen: z5532839@ad.unsw.edu.au
