@@ -16,7 +16,8 @@ Our code submission is organized as follows:
 - **Subfolders:**
   - `models`: Contains the code for our final models and final post-processing code.
   - `notebooks`: Contains all our progress throughout the project, including models we decided not to include as our final models such as SegNet and U-Net. It also contains code for our post-processing techniques such as superpixels, morphology, and CRF.
-
+  - `dataset`: Contains our custom test and validation samples (splitting mechanism outline in the accompanying report), and 30% stratified samples.
+    
 ## Package Requirements
 
 To set up the environment, run the following commands:
