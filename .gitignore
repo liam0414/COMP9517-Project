@@ -5,7 +5,7 @@
 **/runs
 **/predictions
 **/predictions*
-**/train*
+# **/train*
 **/trained
 WildScenes2d
 coco8-seg/
