@@ -1,5 +1,10 @@
 # COMP9517 2024 T2 Group Project README
 
+This paper explores natural scene semantic segmentation using the WildScenes dataset. We develop and test three baseline models: U-Net, SegNet and YOLOv8. We implement various data-preprocessing such as mean subtraction, hyperparameter tuning and post-processing methods involving superpixels, conditional random fields (CRF), pixel and morphological operations, and ensemble learning to improve our results. Based on our results, we discuss challenges in natural scene segmentation and conclude by proposing future work avenues.
+
+![image](https://github.com/user-attachments/assets/43572984-2aec-409d-8c36-d557afb1de49)
+
+
 ## Folder Structure
 Our code submission is organized as follows:
 
